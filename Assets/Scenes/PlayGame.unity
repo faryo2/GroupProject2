@@ -469,7 +469,7 @@ MonoBehaviour:
   zMax: 10
   zMin: -10
   Hp: 0
-  maxHp: 5
+  maxHp: 1
   slider: {fileID: 381440850}
 --- !u!1 &710836738
 GameObject:
