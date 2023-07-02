@@ -11,14 +11,14 @@ public class PlayerMove : MonoBehaviour
   [SerializeField] private float xMin;
   [SerializeField] private float zMax;
   [SerializeField] private float zMin;
+  [SerializeField] private int maxHp;
   public int Hp;
-  public int maxHp = 5;
   public Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
-      Hp = 5;
+      Hp = maxHp;
       slider.value = 1;
     }
 
