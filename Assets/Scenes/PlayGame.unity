@@ -455,10 +455,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  xMax: 0
-  xMin: 0
-  zMax: 0
-  zMin: 0
+  xMax: 10
+  xMin: 2
+  zMax: 10
+  zMin: 2
   Hp: 5
   maxHp: 5
   slider: {fileID: 0}
