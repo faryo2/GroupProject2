@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc62267297ab417faa1420e478b4fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 5477559871281609283, guid: 49f46768d07811b43947dbb375a4850e, type: 3}
   makeTime: 3
   enemyZ: 10
   enemyX: 15
