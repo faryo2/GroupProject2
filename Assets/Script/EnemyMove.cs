@@ -9,12 +9,16 @@ public class EnemyMove : MonoBehaviour
 
   private GameObject data;
   private Data dataCs;
+    private GameObject player;
+    private PlayerMove playerCs;
 
     // Start is called before the first frame update
     void Start()
     {
       data = GameObject.Find("Data");
       dataCs = data.GetComponent<Data>();
+        player = GameObject.Find("Player");
+        playerCs = player.GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class EnemyMove : MonoBehaviour
       if(other.gameObject.CompareTag("Bullet"))
       {
         dataCs.score++; //Destroyの前に書くこと！
+        playerCs.ex++;
         Destroy(this.gameObject);
         Debug.Log("Bullet");
       }
