@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class InvincileTime : MonoBehaviour
 {
-    public GameObject Slider
-    public bool on_damage = false;  //ダメージフラグ
-    private SpriteRenderer renderer;
+    public GameObject Slider;
+    private bool on_damage = false;
+    private MeshRenderer meshRenderer;
 
-    //Use this for initialization
-    void Start ()
-    {
-        renderer = gameObject.GetComponent<SpriteRenderer>();//点滅処理のため
-    }
-
- 
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
-       
-
-            
-        
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -29,32 +19,30 @@ public class InvincileTime : MonoBehaviour
     {
         if (on_damage)
         {
-            float level = Math.Abs(Math.Sin(InvincileTime.time *));
-            renderer.color = new Color(if,if,if,level);             //ダメージフラグがtrueで点滅させる。
+            float level = Mathf.Abs(Mathf.Sin(Time.time));
+            meshRenderer.material.color = new Color(level, level, level, level);
         }
-        void OnCollisionEnter2D(Colision2D col)
-        {
-            if (!on_damage && col.gameObject.tag == "Enemy")
-            {
-                Slider.gameObjectSendMessage("onDamage", 10);//敵とぶつかったら無効
-                OnDamageEffect();
-            }
     }
+    void OnTrigerEnter(Collider col)
+    {
+        if (!on_damage && col.gameObject.tag == "Enemy")
+        {
+            Slider.SendMessage("OnDamage", 10);
+            OnDamageEffect();
+        }
+    }
+
     void OnDamageEffect()
     {
-            on_damage = true;     //ダメージフラグ発動
-
-            StartCoroutine("WaitForIt")
+        on_damage = true;
+        StartCoroutine("WaitForIt");
     }
+
     IEnumerator WaitForIt()
-        {
-            yield return new WaitForSeconds(1); //1秒処理止める。The world
+    {
+        yield return new WaitForSeconds(1);
 
-
-            on_dmage = false;
-            renderer.color=new Color(if,if,if,if);/1秒後ダメージフラグをfolseにして点滅を戻す。
-
-        }
-          
+        on_damage = false;
+        meshRenderer.material.color = Color.white;
     }
 }
