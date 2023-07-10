@@ -8,7 +8,7 @@ public class ScoreCount : MonoBehaviour
   [SerializeField] private Text scoreText;
   [SerializeField] private Text highScoreText;
   private float score;
-  private float highScore;
+  private float highScore = 0;
   private GameObject data;
   private Data dataCs;
 
@@ -16,7 +16,6 @@ public class ScoreCount : MonoBehaviour
     void Start()
     {
       score = 0;
-      highScore = 0;
       data = GameObject.Find("Data");
       dataCs = data.GetComponent<Data>();
     }
@@ -27,7 +26,6 @@ public class ScoreCount : MonoBehaviour
       if (highScore < score)
       {
         highScore = score;
-        Debug.Log(highScore);
       }
     }
     // Update is called once per frame
