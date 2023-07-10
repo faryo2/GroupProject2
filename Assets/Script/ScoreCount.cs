@@ -35,7 +35,7 @@ public class ScoreCount : MonoBehaviour
     {
       AddPoint();
       score = dataCs.score;
-      scoreText.text = "Score " + score.ToString();
-      highScoreText.text = "High Score " + highScore.ToString();
+      scoreText.text = "Score：" + score.ToString();
+      highScoreText.text = "High Score：" + highScore.ToString();
     }
 }
