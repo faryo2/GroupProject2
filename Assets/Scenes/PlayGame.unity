@@ -469,13 +469,10 @@ MonoBehaviour:
   xMin: -15
   zMax: 10
   zMin: -10
-<<<<<<< HEAD
   maxHp: 10
   firstMaxHp: 5
   number: 0
-=======
   maxHp: 2
->>>>>>> parent of 4213181 (Merge branch 'main' of https://github.com/faryo2/GroupProject2)
   Hp: 0
   level: 0
   ex: 0
