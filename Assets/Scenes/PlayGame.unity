@@ -471,7 +471,6 @@ MonoBehaviour:
   zMin: -10
   maxHp: 10
   firstMaxHp: 10
-=======
   number: 0
   Hp: 0
   level: 0
