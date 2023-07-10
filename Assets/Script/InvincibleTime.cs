@@ -39,7 +39,7 @@ public class InvincibleTime : MonoBehaviour
 
     private IEnumerator WaitForInvincibleTime()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(10);
 
         onDamage = false;
         meshRenderer.material.color = Color.white;
