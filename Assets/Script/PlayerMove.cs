@@ -6,31 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float firstMoveSpeed;
-    [SerializeField] private float xMax;
-    [SerializeField] private float xMin;
-    [SerializeField] private float zMax;
-    [SerializeField] private float zMin;
-    [SerializeField] private int maxHp;
-    [SerializeField] private int firstMaxHp;
-
-    public int number;
-    public int Hp;
-    public int level;
-    public int ex;
-    public float speed;
-    public Slider slider;
+  [SerializeField] private float moveSpeed;
+  [SerializeField] private float xMax;
+  [SerializeField] private float xMin;
+  [SerializeField] private float zMax;
+  [SerializeField] private float zMin;
+  [SerializeField] private int maxHp;
+  public int Hp;
+  public Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
-        number = 0;
-        Hp = firstMaxHp;
-        level = 0;
-        ex = 0;
-        speed = firstMoveSpeed;
-        slider.value = 1;
+      Hp = maxHp;
+      slider.value = 1;
     }
 
     // Update is called once per frame
@@ -52,12 +41,6 @@ public class PlayerMove : MonoBehaviour
       {
           transform.Translate(new Vector3(0, 0, -moveSpeed) * Time.deltaTime);
       }
-
-      if(ex >= 10)
-        {
-            ex -= 10;
-            level++;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
