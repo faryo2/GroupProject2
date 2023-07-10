@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -464,12 +464,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  firstMoveSpeed: 0
   xMax: 15
   xMin: -15
   zMax: 10
   zMin: -10
   maxHp: 10
+  firstMaxHp: 5
+  number: 0
   Hp: 0
+  level: 0
+  ex: 0
+  speed: 0
   slider: {fileID: 381440850}
 --- !u!1 &710836738
 GameObject:
@@ -1103,3 +1109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1967291192}
+  highScoreText: {fileID: 0}
