@@ -22,6 +22,9 @@ public class PlayerMove : MonoBehaviour
     public float speed;
     public Slider slider;
 
+    private bool isInvincible = false;
+    public float invincibilityTime = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +39,22 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(Input.GetKey(KeyCode.D) && this.transform.position.x < xMax)
-      {
-          transform.Translate(new Vector3(moveSpeed, 0, 0) * Time.deltaTime);
-      }
-      if(Input.GetKey(KeyCode.A) && this.transform.position.x > xMin)
-      {
-          transform.Translate(new Vector3(-moveSpeed, 0, 0) * Time.deltaTime);
-      }
-      if(Input.GetKey(KeyCode.W) && this.transform.position.z < zMax)
-      {
-          transform.Translate(new Vector3(0, 0, moveSpeed) * Time.deltaTime);
-      }
-      if(Input.GetKey(KeyCode.S) && this.transform.position.z > zMin)
-      {
-          transform.Translate(new Vector3(0, 0, -moveSpeed) * Time.deltaTime);
-      }
+        if (!isInvincible || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            float moveX = Input.GetAxis("Horizontal");
+            float moveZ = Input.GetAxis("Vertical");
 
-      if(ex >= 10)
+            Vector3 movement = new Vector3(moveX, 0, moveZ);
+            transform.position += movement * moveSpeed * Time.deltaTime;
+
+            // ˆÚ“®”ÍˆÍ‚Ì§ŒÀ
+            Vector3 clampedPosition = transform.position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, xMin, xMax);
+            clampedPosition.z = Mathf.Clamp(clampedPosition.z, zMin, zMax);
+            transform.position = clampedPosition;
+        }
+
+        if (ex >= 10)
         {
             ex -= 10;
             level++;
@@ -62,19 +63,33 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      if(other.gameObject.CompareTag("Enemy"))
-      {
-        Hp--;
-        if(Hp <= 0)
+        if (other.gameObject.CompareTag("Enemy") && !isInvincible)
         {
-            Destroy(this.gameObject);
+            Hp--;
+            if (Hp <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                StartCoroutine(InvincibilityCooldown());
+            }
+
+            slider.value = (float)Hp / (float)maxHp;
         }
-        slider.value = (float)Hp / (float)maxHp;
-      }
+    }
+
+    private System.Collections.IEnumerator InvincibilityCooldown()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityTime);
+
+        isInvincible = false;
     }
 
     private void OnDestroy()
     {
-      SceneManager.LoadScene("End");
+        SceneManager.LoadScene("End");
     }
 }
