@@ -21,7 +21,8 @@ public class PlayerMove : MonoBehaviour
     public int ex;
     public float speed;
     public Slider slider;
-
+    private bool isInvincible = false;
+    public float invincibilityTime = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,17 +63,29 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      if(other.gameObject.CompareTag("Enemy"))
+      if(other.gameObject.CompareTag("Enemy") && !isInvincible)
       {
         Hp--;
         if(Hp <= 0)
         {
             Destroy(this.gameObject);
         }
-        slider.value = (float)Hp / (float)maxHp;
-      }
+            StartCoroutine(InvincibilityCooldown());
+        }
+
+        {
+        slider.value = (float) Hp / (float) maxHp;
+        }
     }
 
+    private System.Collections.IEnumerator InvincibilityCooldown()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityTime);
+
+        isInvincible = false;
+    }
     private void OnDestroy()
     {
       SceneManager.LoadScene("End");
