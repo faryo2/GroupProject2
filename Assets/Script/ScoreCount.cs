@@ -15,18 +15,18 @@ public class ScoreCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      score = 0;
-      highScore = 0;
-      data = GameObject.Find("Data");
-      dataCs = data.GetComponent<Data>();
+        score = 0;
+        data = GameObject.Find("Data");
+        dataCs = data.GetComponent<Data>();
     }
 
     public void AddPoint()
     {
-      score = dataCs.score;
+        score = dataCs.score;
+        highScore = dataCs.highScore;
       if (highScore < score)
       {
-        highScore = score;
+            dataCs.highScore = score;
         Debug.Log(highScore);
       }
     }

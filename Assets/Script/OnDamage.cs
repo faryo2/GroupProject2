@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OnDamage:MonoBehaviour
+public class OnDamage : MonoBehaviour
 {
     private Slider slider;
 
@@ -12,7 +12,7 @@ public class OnDamage:MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void OnDamage(float damageAmount)
+    public void Damage(float damageAmount)
     {
         slider.value -= damageAmount;
     }

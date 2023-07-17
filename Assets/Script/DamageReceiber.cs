@@ -20,5 +20,8 @@ public class DamageReceiver : MonoBehaviour
         slider.value -= damageAmount;
 
         if (slider.value <= 0)
+        {
+
+        }
     }
 }
